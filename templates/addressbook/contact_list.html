@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Адресная книга</title>
+</head>
+<body>
+    <h1>Список контактов</h1>
+    <a href="{% url 'contact_add' %}">Добавить контакт</a>
+    <ul>
+    {% for contact in contacts %}
+        <li><a href="{% url 'contact_detail' contact.pk %}">{{ contact.last_name }} {{ contact.first_name }} {{ contact.patronymic|default:'' }}</a> ({{ contact.phone }})</li>
+    {% empty %}
+        <li>Нет контактов. Добавьте первый!</li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
